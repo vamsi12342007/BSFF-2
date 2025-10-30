@@ -52,7 +52,17 @@
     }
   </style>
 </head>
-
+<script src="database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getFirestore, doc, updateDoc, setDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  moviesCol = collection(db, 'movies');
+  setUpFns("fantasy", 2, getDocs, doc, updateDoc, setDoc);
+</script>
 <body>
   <div class="indexContainer">
     <div class="Header1 mobileView">
@@ -79,8 +89,16 @@
     </div>
 
    <div class="filmpostercontainer">
-    <a href="Jackson Black.html"><img class="filmposters" src="Images/Film Poster/Fantasy/Jackson Black.png" width="150" height="350"></a>
-    <a href="Parsing Parallel Paths.html".html><img class="filmposters" src="Images/Film Poster/Fantasy/Parsing Parallel Paths.png" width="150" height="350"></a>
+    <div>
+      <a href="Jackson Black.html"><img class="filmposters" src="Images/Film Poster/Fantasy/Jackson Black.png" width="150" height="350"></a>
+      <i id="fantasy1" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idfantasy1likes">0 likes</span>
+    </div>
+    <div>
+      <a href="Parsing Parallel Paths.html".html><img class="filmposters" src="Images/Film Poster/Fantasy/Parsing Parallel Paths.png" width="150" height="350"></a>
+      <i id="fantasy2" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idfantasy2likes">0 likes</span>
+    </div>
    </div>
     
     <footer class="footer">

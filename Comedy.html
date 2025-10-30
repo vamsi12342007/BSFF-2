@@ -52,7 +52,17 @@
     }
   </style>
 </head>
-
+<script src="database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getFirestore, doc, updateDoc, setDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  moviesCol = collection(db, 'movies');
+  setUpFns("comedy", 3, getDocs, doc, updateDoc, setDoc);
+</script>
 <body>
   <div class="indexContainer">
     <div class="Header1 mobileView">
@@ -79,12 +89,24 @@
     </div>
 
     <div class="filmpostercontainer">
-      <a href="The Parklands.html"><img class="filmposters" src="Images/Film Poster/Comedy/The Parklands.png"
+      <div>
+        <a href="The Parklands.html"><img class="filmposters" src="Images/Film Poster/Comedy/The Parklands.png"
           width="150" height="350"></a>
-      <a href="Facebook Vacation.html"><img class="filmposters" src="Images/Film Poster/Comedy/Facebook Vacation.png"
+          <i id="comedy1" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+        <span style="float: right;" id="idcomedy1likes">0 likes</span>
+      </div>
+      <div>
+            <a href="Facebook Vacation.html"><img class="filmposters" src="Images/Film Poster/Comedy/Facebook Vacation.png"
           width="150" height="350"></a>
- <a href="Booked.html"><img class="filmposters" src="Images/Film Poster/Comedy/Booked.png"
+          <i id="comedy2" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+        <span style="float: right;" id="idcomedy2likes">0 likes</span>
+      </div>
+      <div>
+            <a href="Booked.html"><img class="filmposters" src="Images/Film Poster/Comedy/Booked.png"
           width="150" height="350"></a>
+          <i id="comedy3" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+        <span style="float: right;" id="idcomedy3likes">0 likes</span>
+      </div>
     </div>
 
     <footer class="footer">

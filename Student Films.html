@@ -52,7 +52,17 @@
     }
   </style>
 </head>
-
+<script src="database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getFirestore, doc, updateDoc, setDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  moviesCol = collection(db, 'movies');
+  setUpFns("student", 5, getDocs, doc, updateDoc, setDoc);
+</script>
 <body>
   <div class="indexContainer">
     <div class="Header1 mobileView">
@@ -78,13 +88,33 @@
       <p class="genresheadlines">Student Films</p>
     </div>
 
-   <div class="filmpostercontainer">
-        <a href="What We Become.html"><img class="filmposters" src="Images/Film Poster/Student Films/What we become.png" width="150" height="350"></a>
-        <a href="Hello Wish You Well Goodbye.html"><img class="filmposters" src="Images/Film Poster/Student Films/Hello Wish You Well Goodbye.png" width="150" height="350"></a>
-        <a href="Perfect Show.html"><img class="filmposters" src="Images/Film Poster/Student Films/Perfect Show.png" width="150" height="350"></a>
-        <a href="Tea Time.html"><img class="filmposters" src="Images/Film Poster/Student Films/Tea Time.png" width="150" height="350"></a>
-         <a href="Photosniper.html"><img class="filmposters" src="Images/Film Poster/Student Films/Photosniper.png" width="150" height="350"></a>
-   </div>
+  <div class="filmpostercontainer">
+        <div>    
+          <a href="What We Become.html"><img class="filmposters" src="Images/Film Poster/Student Films/What we become.png" width="150" height="350"></a>
+          <i id="student1" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+          <span style="float: right;" id="idstudent1likes">0 likes</span>
+        </div>
+        <div>
+          <a href="Hello Wish You Well Goodbye.html"><img class="filmposters" src="Images/Film Poster/Student Films/Hello Wish You Well Goodbye.png" width="150" height="350"></a>
+          <i id="student2" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+          <span style="float: right;" id="idstudent2likes">0 likes</span>
+        </div>
+        <div>
+          <a href="Perfect Show.html"><img class="filmposters" src="Images/Film Poster/Student Films/Perfect Show.png" width="150" height="350"></a>
+          <i id="student3" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+          <span style="float: right;" id="idstudent3likes">0 likes</span>
+        </div>
+        <div>
+          <a href="Tea Time.html"><img class="filmposters" src="Images/Film Poster/Student Films/Tea Time.png" width="150" height="350"></a>
+          <i id="student4" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+          <span style="float: right;" id="idstudent4likes">0 likes</span>
+        </div>
+        <div>
+          <a href="Photosniper.html"><img class="filmposters" src="Images/Film Poster/Student Films/Photosniper.png" width="150" height="350"></a>
+          <i id="student5" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+          <span style="float: right;" id="idstudent5likes">0 likes</span>
+        </div>
+  </div>
     
     <footer class="footer">
       <div class="contactContainer">

@@ -52,7 +52,17 @@
     }
   </style>
 </head>
-
+<script src="database.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getFirestore, doc, updateDoc, setDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  moviesCol = collection(db, 'movies');
+  setUpFns("foreign", 4, getDocs, doc, updateDoc, setDoc);
+</script>
 <body>
   <div class="indexContainer">
     <div class="Header1 mobileView">
@@ -79,10 +89,26 @@
     </div>
 
    <div class="filmpostercontainer">
-    <a href="Ghumauro.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/Ghumauro.png" width="350" height="150"></a>
-    <a href="The Last Note.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/The Last Note.png" width="200" height="150"></a>
-    <a href="To all my women.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/To All My Woman.png" width="200" height="150"></a>
-    <a href="Rope of Hope.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/Rope of Hope.png" width="200" height="150"></a>
+    <div>
+      <a href="Ghumauro.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/Ghumauro.png" width="350" height="150"></a>
+      <i id="foreign1" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idforeign1likes">0 likes</span>
+    </div>
+    <div>
+      <a href="The Last Note.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/The Last Note.png" width="200" height="150"></a>
+      <i id="foreign2" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idforeign2likes">0 likes</span>
+    </div>
+    <div>
+      <a href="To all my women.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/To All My Woman.png" width="200" height="150"></a>
+      <i id="foreign3" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idforeign3likes">0 likes</span>
+    </div>
+    <div>
+      <a href="Rope of Hope.html"> <img class="filmposters" src="Images/Film Poster/Foreign Films/Rope of Hope.png" width="200" height="150"></a>
+      <i id="foreign4" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+      <span style="float: right;" id="idforeign4likes">0 likes</span>
+    </div>
   </div>
 
     
