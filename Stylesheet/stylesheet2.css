@@ -43,7 +43,6 @@ body {
   height:700px;
   position: relative;
   left:400px;
- 
 }
 
 .ratingicons {
@@ -1696,4 +1695,21 @@ hr.new4 {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+#commentsContainer{
+  width: 300px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.commentWrapper{
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0 10px;
+}
+.marginlessP{
+  margin: 0;
+}
+.commentWriter{
+  font-size: 14px;
 }

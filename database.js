@@ -22,6 +22,7 @@
         document.getElementById('loadingScreen').style.display = 'block';
         moviesSnapshot = await getDocs(moviesCol)
         movieList = moviesSnapshot.docs.map(doc => doc.data());
+        sessionStorage.setItem("movies", JSON.stringify(movieList));
         setupLikesDisplay();
         document.getElementById('loadingScreen').style.display = 'none';
     }
@@ -55,4 +56,19 @@
         }
         getMoviesAndDisplay();
         document.getElementById('loadingScreen').style.display = 'none';
+    }
+    function getComments(){
+        let movies = sessionStorage.getItem("movies");
+        movies = JSON.parse(movies);
+        let currentID = document.getElementsByTagName("comment-component")[0].id.replace('comment','');
+        let currMovie= movies.find(o=>o.id==currentID);
+        let comments = currMovie.comments;
+        if(comments){
+            let htmlNode = "";
+            for(var i = 0; i< comments.length; i++){
+                let comment = comments[i]
+                htmlNode += `<div class="commentWrapper"><p class="marginlessP commentWriter">Commented by: ${comment.name}</p><h4 class="marginlessP commentText">${comment.comment}</h4></div>`
+            }
+            document.getElementById("commentsContainer").innerHTML = htmlNode;
+        }
     }
