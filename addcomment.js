@@ -39,9 +39,25 @@ class Header extends HTMLElement {
     event.preventDefault();
     let name = document.getElementById("nameinput").value;
     let comment = document.getElementById("commentinput").value;
-    if(!name || !comment) return
+    if(!name || !comment) {
+      alert("Please provide name and comment");
+      return
+    }
     else{
-
+      document.getElementById("nameinput").value = "";
+      document.getElementById("commentinput").value = "";
+      let newComment = {
+        comment,name
+      }
+      let movies = JSON.parse(sessionStorage.getItem("movies"));
+      let currentID = document.getElementsByTagName("comment-component")[0].id.replace('comment','');
+      let currMovie= movies.find(o=>o.id==currentID);
+      if(currMovie.comments){
+        currMovie.comments.push(newComment);
+      }
+      else currMovie.comments = [newComment];
+      sessionStorage.setItem("movies", JSON.stringify(movies));
+      submitCommentToDatabase(currentID, currMovie);
     }
   }
 }

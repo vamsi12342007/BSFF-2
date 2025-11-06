@@ -9,14 +9,14 @@
     };
     let movieList = [];
     let app, db, moviesCol, doc, getDocs, updateDoc, setDoc, count, movieType;
-    async function setUpFns(type, countRef, getDocsRef, docRef, updateDocRef, setDocRef){
+    async function setUpFns(type, countRef, getDocsRef, docRef, updateDocRef, setDocRef, getMovies = true){
         doc = docRef;
         updateDoc = updateDocRef;
         setDoc = setDocRef;
         getDocs = getDocsRef;
         count = countRef;
         movieType = type;
-        getMoviesAndDisplay();
+        if(getMovies) getMoviesAndDisplay();
     }
     async function getMoviesAndDisplay(){
         document.getElementById('loadingScreen').style.display = 'block';
@@ -71,4 +71,12 @@
             }
             document.getElementById("commentsContainer").innerHTML = htmlNode;
         }
+    }
+    async function submitCommentToDatabase(id, movieRef){
+        document.getElementById('loadingScreen').style.display = 'block';
+        console.log(movieRef);
+        let movieDB = doc(db, "movies", id);
+        await updateDoc(movieDB, movieRef);
+        document.getElementById('loadingScreen').style.display = 'none';
+        getComments();
     }

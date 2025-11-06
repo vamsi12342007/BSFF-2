@@ -1706,6 +1706,7 @@ hr.new4 {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 .marginlessP{
   margin: 0;
