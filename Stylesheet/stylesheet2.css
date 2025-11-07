@@ -35,7 +35,6 @@ body {
 .commentstitle {
   margin: 100px;
 }
-
 .commentscontainer {
   border: 3px solid black;
   color:#FFD700;
@@ -1696,7 +1695,14 @@ hr.new4 {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
+.commentsareawrapper{
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 400px;
+  margin: auto;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
 #commentsContainer{
   width: 300px;
   margin: auto;

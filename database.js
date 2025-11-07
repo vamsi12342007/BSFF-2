@@ -71,6 +71,10 @@
             }
             document.getElementById("commentsContainer").innerHTML = htmlNode;
         }
+        else{
+            let htmlNode = "<p>No comments received yet</p>";
+            document.getElementById("commentsContainer").innerHTML = htmlNode;
+        }
     }
     async function submitCommentToDatabase(id, movieRef){
         document.getElementById('loadingScreen').style.display = 'block';
