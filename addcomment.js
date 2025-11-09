@@ -7,7 +7,7 @@ class Header extends HTMLElement {
       <style>
       #formContainer{
         margin:auto;
-        width: 300px;
+        width: 100%;
         padding-bottom:20px;
         justify-content:center;
         text-align:center;

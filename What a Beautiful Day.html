@@ -41,7 +41,7 @@
           toggleMenu();
         });
       }
-      getComments();
+      getCommentsAndLikes();
     });
   </script>
 </head>
@@ -79,7 +79,17 @@
               allowfullscreen>
       </iframe>
     </div>
-
+    <div class="commentsareawrapper">
+      <div class="likesFeatureWrapper">
+        <i onclick="handlelikebutton(event)" id="drama1" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+        <span style="float: right;" id="iddrama1likes">0 likes</span>
+      </div>
+      <comment-component class="addCommentsForm" id="drama1comment"></comment-component>
+      <div class="commentsSection">
+        <h4 class="marginlessP">Comments</h4>
+        <div id="commentsContainer"></div>
+      </div>
+    </div>
 
     <div class="pagecontainer">
       <div class="postercontainer">
@@ -134,13 +144,6 @@
         glimmer of hope for Ashley, she gets to spend a few moments of the afternoon with the mother she remembers.</p>
     </div>
   </div>
-  <div class="commentsareawrapper">
-      <comment-component class="addCommentsForm" id="drama1comment"></comment-component>
-      <div class="commentsSection">
-        <h4 class="marginlessP">Comments</h4>
-        <div id="commentsContainer"></div>
-      </div>
-    </div>
 </body>
 <div id="loadingScreen" style="display: none;">
   <!-- Loading content goes here, e.g., a spinner or "Loading..." text -->

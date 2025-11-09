@@ -1698,7 +1698,7 @@ hr.new4 {
 .commentsareawrapper{
   border: 1px solid gray;
   border-radius: 5px;
-  width: 400px;
+  width: 80%;
   margin: auto;
   padding: 0 10px;
   margin-bottom: 20px;
@@ -1719,4 +1719,8 @@ hr.new4 {
 }
 .commentWriter{
   font-size: 14px;
+}
+.likesFeatureWrapper{
+  width: 100px;
+  margin: auto;
 }

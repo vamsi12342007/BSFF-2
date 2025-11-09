@@ -37,7 +37,7 @@
             document.getElementById(idy).addEventListener('click', ()=>increaseLikes(idy, {type:movieType, id: idy, likes:1}));
         }
     }
-    async function increaseLikes(id, data){
+    async function increaseLikes(id, data, getMovies = true){
         if(event.target.classList.contains('clicked')){
             return
         }
@@ -54,14 +54,16 @@
             const docRef = doc(db, "movies", id);
             await setDoc(docRef, data);
         }
-        getMoviesAndDisplay();
+        if(getMovies) getMoviesAndDisplay();
         document.getElementById('loadingScreen').style.display = 'none';
     }
-    function getComments(){
+    function getCommentsAndLikes(){
         let movies = sessionStorage.getItem("movies");
         movies = JSON.parse(movies);
         let currentID = document.getElementsByTagName("comment-component")[0].id.replace('comment','');
         let currMovie= movies.find(o=>o.id==currentID);
+        let likes = currMovie.likes;
+        document.getElementById("id"+currentID+"likes").innerHTML = (currMovie.likes || 0) +" likes";
         let comments = currMovie.comments;
         if(comments){
             let htmlNode = "";
@@ -82,5 +84,12 @@
         let movieDB = doc(db, "movies", id);
         await updateDoc(movieDB, movieRef);
         document.getElementById('loadingScreen').style.display = 'none';
-        getComments();
+        getCommentsAndLikes();
+    }
+    async function handlelikebutton(event){        
+        let idx = event.target.id
+        let CurrMovieType = idx.replace(/\d+$/, '')
+        console.log(idx, CurrMovieType);
+        await increaseLikes(idx, {type:movieType, id: idy, likes:1}, false);
+        getCommentsAndLikes();
     }
