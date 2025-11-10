@@ -22,15 +22,25 @@ class Header extends HTMLElement {
       #commentsHeader{
         margin:10px 0;
       }
+      .formfieldswrapper{
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        justify-content: center;
+      }
+      .formfieldswrapper input,textarea{
+        margin: 0 20px;
+      }
       </style>
       <div id="formContainer">
         <h4 id="commentsHeader">ADD A COMMENT</h4>
-        <p class="marginlessP">Name</p>
-        <input id="nameinput" type="text" name="name"/>
-        <p class="marginlessP">Comment</p>
-        <textarea type="text" id="commentinput" name="comment"></textarea>
-        <p></p>
-        <button id="submitButton" type="submit">Submit</button>
+        <div class="formfieldswrapper">
+          <p class="marginlessP">Name</p>
+          <input id="nameinput" type="text" name="name"/>
+          <p class="marginlessP">Comment</p>
+          <textarea type="text" id="commentinput" name="comment"></textarea>
+          <button id="submitButton" type="submit">Submit</button>
+        </div>
       </div>
     `;
     document.getElementById("submitButton").addEventListener('click', this.submitComment); 
