@@ -63,9 +63,9 @@
         movies = JSON.parse(movies);
         let currentID = document.getElementsByTagName("comment-component")[0].id.replace('comment','');
         let currMovie= movies.find(o=>o.id==currentID);
-        let likes = currMovie.likes;
-        document.getElementById("id"+currentID+"likes").innerHTML = (currMovie.likes || 0) +" likes";
-        let comments = currMovie.comments;
+        let likes = currMovie?.likes || 0
+        document.getElementById("id"+currentID+"likes").innerHTML = likes +" likes";
+        let comments = currMovie?.comments;
         if(comments){
             let htmlNode = "";
             for(var i = 0; i< comments.length; i++){
@@ -87,11 +87,26 @@
         document.getElementById('loadingScreen').style.display = 'none';
         getCommentsAndLikes();
     }
-    async function handlelikebutton(event){        
+    async function handlelikebutton(event){
+        if(event.target.classList.contains('clicked')){
+            return
+        }
         let idx = event.target.id
         let CurrMovieType = idx.replace(/\d+$/, '')
         console.log(idx, CurrMovieType);
-        await increaseLikes(idx, {type:movieType, id: idy, likes:1}, false);
+        //updatelikes info in session storage
+        let movies = JSON.parse(sessionStorage.getItem("movies"));
+        let currMovie= movies.find(o=>o.id==idx);
+        if(currMovie){
+            currMovie.likes++;
+        }
+        else movies.push({
+            type:movieType,
+            id: idx,
+            likes:1
+        })
+        sessionStorage.setItem("movies", JSON.stringify(movies));
+        await increaseLikes(idx, {type:movieType, id: idx, likes:1}, false);
         getCommentsAndLikes();
     }
     function toggleComments(){
