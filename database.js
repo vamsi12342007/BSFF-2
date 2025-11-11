@@ -9,6 +9,7 @@
     };
     let movieList = [];
     let app, db, moviesCol, doc, getDocs, updateDoc, setDoc, count, movieType;
+    let commentsExpanded = false;
     async function setUpFns(type, countRef, getDocsRef, docRef, updateDocRef, setDocRef, getMovies = true){
         doc = docRef;
         updateDoc = updateDocRef;
@@ -92,4 +93,15 @@
         console.log(idx, CurrMovieType);
         await increaseLikes(idx, {type:movieType, id: idy, likes:1}, false);
         getCommentsAndLikes();
+    }
+    function toggleComments(){
+        if(commentsExpanded){
+            document.getElementById("commentsContainer").style.display = 'none';
+            event.target.innerHTML= "Show Comments";
+        }
+        else{
+            document.getElementById("commentsContainer").style.display = 'block';
+            event.target.innerHTML= "Hide Comments";
+        }
+        commentsExpanded = !commentsExpanded;
     }

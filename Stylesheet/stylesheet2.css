@@ -1709,7 +1709,7 @@ hr.new4 {
   margin-bottom: 20px;
 }
 .commentWrapper{
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-radius: 5px;
   padding: 0 10px;
   margin-bottom: 10px;
@@ -1725,5 +1725,10 @@ hr.new4 {
   margin: auto;
 }
 .fa-thumbs-up{
+  cursor: pointer;
+}
+.commentsExpander{
+  font-size: 20px;
+  color: blue;
   cursor: pointer;
 }
