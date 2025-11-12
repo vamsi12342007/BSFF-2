@@ -67,7 +67,8 @@
       app = initializeApp(firebaseConfig);
       db = getFirestore(app);
       moviesCol = collection(db, 'movies');
-      setUpFns("drama", 10, getDocs, doc, updateDoc, setDoc);
+      count = 10;
+      setUpFns("drama", getDocs, doc, updateDoc, setDoc);
     </script>
 <body>
   <div class="indexContainer">

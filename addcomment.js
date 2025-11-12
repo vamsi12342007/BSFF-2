@@ -42,6 +42,10 @@ class Header extends HTMLElement {
           <button id="submitButton" type="submit">Submit</button>
         </div>
       </div>
+      <div id="loadingScreen" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
     `;
     document.getElementById("submitButton").addEventListener('click', this.submitComment); 
   }
@@ -62,14 +66,22 @@ class Header extends HTMLElement {
       let movies = JSON.parse(sessionStorage.getItem("movies"));
       let currentID = document.getElementsByTagName("comment-component")[0].id.replace('comment','');
       let currMovie= movies.find(o=>o.id==currentID);
-      if(currMovie.comments){
+      let CurrMovieType = currentID.replace(/\d+$/, '');
+      if(currMovie?.comments){
         currMovie.comments.push(newComment);
       }
-      else currMovie.comments = [newComment];
+      else{
+        currMovie = {
+          type:CurrMovieType,
+          id: currentID,
+          likes:0,
+          comments: [newComment]
+        }
+        movies.push(currMovie);
+      }
       sessionStorage.setItem("movies", JSON.stringify(movies));
       submitCommentToDatabase(currentID, currMovie);
     }
   }
 }
-
 customElements.define('comment-component', Header);

@@ -21,7 +21,7 @@
         import { getFirestore, doc, getDocs, setDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
         app = initializeApp(firebaseConfig);
         db = getFirestore(app);
-        setUpFns("student", 5, getDocs, doc, updateDoc, setDoc, false);
+        setUpFns("student", getDocs, doc, updateDoc, setDoc, false);
     </script>
     <script src="addcomment.js" type="text/javascript"></script>
   <script>
@@ -77,16 +77,16 @@
       </iframe>
     </div>
     <div class="commentsareawrapper">
-            <div class="likesFeatureWrapper">
-                <i onclick="handlelikebutton(event)" id="student5" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
-                <span style="float: right;" id="student5likes">0 likes</span>
-            </div>
-            <comment-component class="addCommentsForm" id="student5comment"></comment-component>
-            <div class="commentsSection">
-                <h4 class="marginlessP"><span onclick="toggleComments()" class="commentsExpander">Show Comments</span></h4>
-                <div id="commentsContainer" style="display: none;"></div>
-            </div>
+        <div class="likesFeatureWrapper">
+            <i onclick="handlelikebutton(event)" id="student5" class="fa fa-thumbs-up" style="font-size:24px;color:blue"></i>
+            <span style="float: right;" id="student5likes">0 likes</span>
         </div>
+        <comment-component class="addCommentsForm" id="student5comment"></comment-component>
+        <div class="commentsSection">
+            <h4 class="marginlessP"><span onclick="toggleComments()" class="commentsExpander">Show Comments</span></h4>
+            <div id="commentsContainer" style="display: none;"></div>
+        </div>
+    </div>
     <div class="pagecontainer">
       <div class="postercontainer">
         <div>
@@ -174,8 +174,3 @@
     </footer>
   </div>
 </body>
-<div id="loadingScreen" style="display: none;">
-  <!-- Loading content goes here, e.g., a spinner or "Loading..." text -->
-  <div class="spinner"></div>
-  <p>Loading...</p>
-</div>

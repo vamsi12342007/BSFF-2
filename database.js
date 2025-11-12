@@ -10,12 +10,11 @@
     let movieList = [];
     let app, db, moviesCol, doc, getDocs, updateDoc, setDoc, count, movieType;
     let commentsExpanded = false;
-    async function setUpFns(type, countRef, getDocsRef, docRef, updateDocRef, setDocRef, getMovies = true){
+    async function setUpFns(type, getDocsRef, docRef, updateDocRef, setDocRef, getMovies = true){
         doc = docRef;
         updateDoc = updateDocRef;
         setDoc = setDocRef;
         getDocs = getDocsRef;
-        count = countRef;
         movieType = type;
         if(getMovies) getMoviesAndDisplay();
     }
@@ -45,15 +44,31 @@
         document.getElementById('loadingScreen').style.display = 'block';
         event.target.style.color= "gray"
         event.target.classList.add('clicked');
-        const movie = movieList.find(o=> o.id == id)
-        if(movie){
-            movie.likes++;
-            let movieRef = doc(db, "movies", id);
-            await updateDoc(movieRef, movie);
+        let movie;
+        if(getMovies){
+            movie = movieList.find(o=> o.id == id);
+            if(movie){
+                movie.likes++;
+                let movieRef = doc(db, "movies", id);
+                await updateDoc(movieRef, movie);
+            }
+            else{
+                const docRef = doc(db, "movies", id);
+                await setDoc(docRef, data);
+            }
         }
-        else{
-            const docRef = doc(db, "movies", id);
-            await setDoc(docRef, data);
+        else {
+            let allMovies = sessionStorage.getItem("movies");
+            allMovies = JSON.parse(allMovies);
+            movie = allMovies.find(o=> o.id == id);
+            if(movie){
+                let movieRef = doc(db, "movies", id);
+                await updateDoc(movieRef, movie);
+            }
+            else{
+                const docRef = doc(db, "movies", id);
+                await setDoc(docRef, data);
+            }
         }
         if(getMovies) getMoviesAndDisplay();
         document.getElementById('loadingScreen').style.display = 'none';
@@ -83,9 +98,19 @@
         document.getElementById('loadingScreen').style.display = 'block';
         console.log(movieRef);
         let movieDB = doc(db, "movies", id);
-        await updateDoc(movieDB, movieRef);
-        document.getElementById('loadingScreen').style.display = 'none';
-        getCommentsAndLikes();
+        if(movieDB)
+        updateDoc(movieDB, movieRef).then((result) => {
+            console.log(result);
+            document.getElementById('loadingScreen').style.display = 'none';
+            getCommentsAndLikes();
+        }).catch(async (err) => {
+            console.log(err);
+            if(err.code =='not-found'){
+                await setDoc(movieDB, movieRef)
+            }
+            document.getElementById('loadingScreen').style.display = 'none';
+            getCommentsAndLikes();
+        });;
     }
     async function handlelikebutton(event){
         if(event.target.classList.contains('clicked')){

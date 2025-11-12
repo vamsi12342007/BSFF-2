@@ -21,7 +21,7 @@
     import { getFirestore, doc, getDocs, setDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js';
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
-    setUpFns("drama", 10, getDocs, doc, updateDoc, setDoc, false);
+    setUpFns("drama", getDocs, doc, updateDoc, setDoc, false);
   </script>
   <script src="addcomment.js" type="text/javascript"></script>
   <script>
@@ -140,9 +140,3 @@
     </div>
   </div>
 </body>
-<div id="loadingScreen" style="display: none;">
-  <!-- Loading content goes here, e.g., a spinner or "Loading..." text -->
-  <div class="spinner"></div>
-  <p>Loading...</p>
-</div>
-    
