@@ -223,16 +223,16 @@ h4 {
 
 
 a:link {
-  color: #FFD700;
+  color: black;
   text-decoration: none;
 }
 
 a:visited {
-  color: #FFD700;
+  color: black;
 }
 
 a:hover {
-  color: #ffffff;
+  color: greenyellow;
   text-decoration: none;
 }
 
