@@ -26,6 +26,11 @@ body {
   text-align: center;
 }
 
+
+.filmselection {
+  border: 3px solid black;
+}
+
 .comments {
   text-align: center;
   font-size: 30px;
